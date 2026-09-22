@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Irwan Ardiansyah — Backend & AI Systems Engineer</title>
+<meta name="description" content="Irwan Ardiansyah — AI-Native Backend Engineer & Project Manager. Portfolio and CV.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a121e;
+    --panel: #0f1a2b;
+    --panel-2: #121f34;
+    --grid: #1b2b42;
+    --line: #22344c;
+    --text: #e7eef7;
+    --muted: #8298b8;
+    --muted-2: #5c7391;
+    --accent: #52d9c4;
+    --accent-dim: #2c5d54;
+    --amber: #eeb85f;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:
+      linear-gradient(var(--grid) 1px, transparent 1px) 0 0/40px 40px,
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0/40px 40px,
+      var(--bg);
+    background-attachment: fixed;
+    color:var(--text);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .wrap{max-width:920px; margin:0 auto; padding:0 24px;}
+  ::selection{background:var(--accent); color:#04120f;}
+
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.03em;
+    color:var(--muted-2);
+  }
+  h1,h2,h3{font-family:'Space Grotesk', sans-serif; font-weight:600; color:var(--text);}
+
+  /* ===== NAV ===== */
+  header{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter: blur(10px);
+    background:rgba(10,18,30,0.82);
+    border-bottom:1px solid var(--line);
+  }
+  header .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:60px;
+  }
+  .brand{font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:16px; display:flex; align-items:center; gap:8px;}
+  .brand .dot{width:8px; height:8px; border-radius:50%; background:var(--accent); box-shadow:0 0 8px var(--accent); display:inline-block;}
+  nav{display:flex; gap:28px;}
+  nav a{color:var(--muted); font-size:14px; font-family:'IBM Plex Mono',monospace;}
+  nav a:hover{color:var(--accent); text-decoration:none;}
+  .nav-toggle{display:none;}
+
+  /* ===== HERO ===== */
+  .hero{padding:96px 0 64px; position:relative;}
+  .hero-top{
+    display:flex; gap:48px; align-items:flex-start; flex-wrap:wrap;
+  }
+  .hero-photo{
+    width:132px; height:132px; border-radius:10px;
+    background:linear-gradient(155deg, var(--panel-2), var(--panel));
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:42px;
+    color:var(--accent); flex-shrink:0;
+    position:relative; overflow:hidden;
+  }
+  .hero-photo img{
+    width:100%; height:100%; object-fit:cover; object-position:top center;
+    filter:saturate(0.92) contrast(1.03);
+  }
+  .hero-photo::after{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background: repeating-linear-gradient(45deg, transparent 0 8px, rgba(82,217,196,0.05) 8px 9px);
+  }
+  .hero-text{flex:1; min-width:280px;}
+  .kicker{color:var(--accent); font-family:'IBM Plex Mono',monospace; font-size:13px; margin-bottom:10px;}
+  .hero h1{font-size:44px; line-height:1.15; margin-bottom:6px;}
+  .hero .role{color:var(--muted); font-size:18px; margin-bottom:22px;}
+  .hero p.summary{color:var(--muted); max-width:60ch; font-size:15px;}
+
+  .status-grid{
+    margin-top:36px;
+    display:grid; grid-template-columns:repeat(4,1fr);
+    border:1px solid var(--line); border-radius:8px; overflow:hidden;
+  }
+  .status-cell{
+    padding:16px 18px; border-right:1px solid var(--line); background:var(--panel);
+  }
+  .status-cell:last-child{border-right:none;}
+  .status-cell .k{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--muted-2); margin-bottom:6px;}
+  .status-cell .v{font-size:15px; font-weight:500;}
+  .status-cell .v.on{color:var(--accent);}
+
+  .hero-links{margin-top:28px; display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    font-family:'IBM Plex Mono',monospace; font-size:13px;
+    padding:10px 18px; border-radius:6px; border:1px solid var(--line);
+    color:var(--text); display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn:hover{border-color:var(--accent); color:var(--accent); text-decoration:none;}
+  .btn.primary{background:var(--accent); color:#04120f; border-color:var(--accent); font-weight:600;}
+  .btn.primary:hover{color:#04120f; opacity:.88;}
+
+  /* ===== SECTION SHELL ===== */
+  section{padding:64px 0;}
+  .section-head{display:flex; align-items:baseline; gap:14px; margin-bottom:36px;}
+  .section-head .idx{font-family:'IBM Plex Mono',monospace; color:var(--accent-dim); font-size:14px;}
+  .section-head h2{font-size:26px;}
+  .section-head .rule{flex:1; height:1px; background:var(--line);}
+  .section-note{color:var(--muted); font-size:14px; max-width:65ch; margin-bottom:32px; margin-top:-20px;}
+
+  /* ===== PIPELINE (experience) ===== */
+  .pipeline{position:relative; padding-left:28px;}
+  .pipeline::before{
+    content:""; position:absolute; left:5px; top:8px; bottom:8px; width:2px;
+    background:linear-gradient(var(--accent-dim), var(--line));
+  }
+  .node{position:relative; padding-bottom:44px;}
+  .node:last-child{padding-bottom:0;}
+  .node::before{
+    content:""; position:absolute; left:-28px; top:5px; width:12px; height:12px;
+    border-radius:50%; background:var(--bg); border:2px solid var(--accent);
+  }
+  .node-head{display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px; margin-bottom:4px;}
+  .node-head h3{font-size:18px;}
+  .node-time{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted-2); white-space:nowrap;}
+  .node-org{color:var(--accent); font-size:14px; margin-bottom:12px;}
+  .node-org span{color:var(--muted-2);}
+  .node ul{list-style:none; display:flex; flex-direction:column; gap:8px;}
+  .node li{color:var(--muted); font-size:14.5px; padding-left:16px; position:relative;}
+  .node li::before{content:"›"; position:absolute; left:0; color:var(--accent-dim);}
+  .node li b{color:var(--text); font-weight:500;}
+
+  /* ===== PROJECTS ===== */
+  .projects{display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden;}
+  .project{background:var(--panel); padding:26px 28px; display:grid; grid-template-columns:180px 1fr; gap:26px;}
+  .p-shot{
+    width:100%; aspect-ratio:4/3; border-radius:7px; overflow:hidden;
+    border:1px solid var(--line); background:var(--bg);
+  }
+  .p-shot img{width:100%; height:100%; object-fit:cover; object-position:top center; display:block;}
+  .project .p-meta{display:flex; flex-direction:column; gap:6px;}
+  .project .p-meta h3{font-size:18px; color:var(--text);}
+  .project .p-meta .p-role{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--accent);}
+  .project .p-meta .p-badge{
+    margin-top:8px; align-self:flex-start; font-family:'IBM Plex Mono',monospace; font-size:11px;
+    color:var(--amber); border:1px solid var(--amber); border-radius:4px; padding:3px 8px;
+  }
+  .project .p-body p.desc{color:var(--muted); font-size:14px; margin-bottom:14px;}
+  .p-contribs{display:grid; grid-template-columns:1fr 1fr; gap:10px 24px;}
+  .p-contrib{font-size:13.5px; color:var(--muted); padding-left:14px; border-left:2px solid var(--line);}
+  .p-contrib b{display:block; color:var(--text); font-size:14px; margin-bottom:2px; font-weight:500;}
+
+  @media(max-width:680px){
+    .project{grid-template-columns:1fr;}
+    .p-shot{aspect-ratio:16/9; max-width:320px;}
+    .p-contribs{grid-template-columns:1fr;}
+  }
+
+  /* ===== SKILLS ===== */
+  .skill-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:20px 36px;}
+  .skill-row .k{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted-2); margin-bottom:10px;}
+  .chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--text);
+    border:1px solid var(--line); background:var(--panel); padding:5px 10px; border-radius:5px;
+  }
+  @media(max-width:600px){.skill-grid{grid-template-columns:1fr;}}
+
+  /* ===== CERTS / EDU ===== */
+  .two-col{display:grid; grid-template-columns:1.3fr 1fr; gap:48px;}
+  @media(max-width:680px){.two-col{grid-template-columns:1fr;}}
+  .cert-list{list-style:none; display:flex; flex-direction:column; gap:14px;}
+  .cert-list li{font-size:14.5px; color:var(--muted); display:flex; justify-content:space-between; gap:12px; border-bottom:1px dashed var(--line); padding-bottom:14px;}
+  .cert-list li:last-child{border-bottom:none;}
+  .cert-list li b{color:var(--text); font-weight:500;}
+  .cert-list li .yr{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted-2); white-space:nowrap;}
+  .edu-card{border:1px solid var(--line); border-radius:8px; padding:22px; background:var(--panel); margin-bottom:20px;}
+  .edu-card h3{font-size:16px; margin-bottom:4px;}
+  .edu-card .sub{color:var(--muted); font-size:13.5px;}
+  .lang-row{display:flex; justify-content:space-between; font-size:14px; color:var(--muted); padding:6px 0;}
+  .lang-row b{color:var(--text);}
+
+  /* ===== FOOTER / CONTACT ===== */
+  footer{padding:80px 0 60px; border-top:1px solid var(--line); margin-top:20px;}
+  footer h2{font-size:30px; margin-bottom:14px;}
+  footer p{color:var(--muted); max-width:50ch; margin-bottom:32px;}
+  .contact-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden;}
+  .contact-item{background:var(--panel); padding:20px 22px;}
+  .contact-item .k{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--muted-2); margin-bottom:8px;}
+  .contact-item a, .contact-item span{font-size:14.5px; color:var(--text); word-break:break-word;}
+  .contact-item a:hover{color:var(--accent);}
+  .foot-bottom{margin-top:40px; color:var(--muted-2); font-size:12px; font-family:'IBM Plex Mono',monospace; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+  @media(max-width:680px){.contact-grid{grid-template-columns:1fr;}}
+
+  @media(max-width:640px){
+    nav{display:none;}
+    .status-grid{grid-template-columns:repeat(2,1fr);}
+    .status-cell:nth-child(2){border-right:none;}
+    .hero h1{font-size:32px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span> irwan.ardiansyah</div>
+    <nav>
+      <a href="#experience">experience</a>
+      <a href="#projects">projects</a>
+      <a href="#skills">skills</a>
+      <a href="#certs">certs</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-top">
+        <div class="hero-photo"><img src="assets/profile.jpg" alt="Portrait of Irwan Ardiansyah" loading="eager"></div>
+        <div class="hero-text">
+          <div class="kicker">// backend &amp; ai systems engineer</div>
+          <h1>Irwan Ardiansyah</h1>
+          <div class="role">AI-Native Software Engineer · Tech Lead · Project Manager</div>
+          <p class="summary">
+            I design and scale backend systems and AI-powered features across fintech, healthtech, IoT,
+            and edtech — from architecting LLM-driven recommendations to modernizing monoliths into
+            microservices that hold up under real production load.
+          </p>
+        </div>
+      </div>
+
+      <div class="status-grid">
+        <div class="status-cell">
+          <div class="k">location</div>
+          <div class="v">Depok, West Java, ID</div>
+        </div>
+        <div class="status-cell">
+          <div class="k">status</div>
+          <div class="v on">● available for work</div>
+        </div>
+        <div class="status-cell">
+          <div class="k">experience</div>
+          <div class="v">5+ years</div>
+        </div>
+        <div class="status-cell">
+          <div class="k">peak load handled</div>
+          <div class="v">5,000 concurrent users</div>
+        </div>
+      </div>
+
+      <div class="hero-links">
+        <a class="btn primary" href="mailto:irwanardiansyah.bisnis@gmail.com">Email me</a>
+        <a class="btn" href="https://wa.me/6285158837855" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn" href="https://linkedin.com/in/irwanardiansyah" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/irwanadwBiz" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head"><span class="idx">01</span><h2>Work experience</h2><span class="rule"></span></div>
+
+      <div class="pipeline">
+
+        <div class="node">
+          <div class="node-head"><h3>Senior Fullstack Engineer</h3><span class="node-time mono">Aug 2023 — Present</span></div>
+          <div class="node-org">UNVQ Inc. (MyConnect.ai) <span>· Miami, USA (remote)</span></div>
+          <ul>
+            <li>Developed and maintained scalable backend APIs with <b>NestJS, AWS RDS, and BullMQ</b> for a production B2B platform.</li>
+            <li>Spearheaded the <b>MyConnect 2.0</b> migration from AWS Amplify–managed logic to a modular NestJS architecture.</li>
+            <li>Engineered infrastructure supporting <b>5,000 concurrent users</b> during high-scale conference events.</li>
+            <li>Integrated Anthropic AI-powered recommendation services into backend workflows.</li>
+            <li>Led cloud migration from <b>AWS to Azure</b> with zero service disruption.</li>
+          </ul>
+        </div>
+
+        <div class="node">
+          <div class="node-head"><h3>Project Manager (Freelance)</h3><span class="node-time mono">Feb 2024 — Jun 2026</span></div>
+          <div class="node-org">PT. Max Solusindo Jaya <span>· Jakarta, Indonesia (remote)</span></div>
+          <ul>
+            <li>Managed cross-functional teams of 4–8 across <b>6 enterprise projects</b> for Adira, Suzuki, Mitsubishi and Trakindo.</li>
+            <li>Delivered <b>Adira Appraisal 2.0</b>, a nationwide debt-collateral platform for field collectors.</li>
+            <li>Optimized <b>Suzuki's</b> internal tool ecosystem, stable at 2,000 concurrent users through peak Lebaran traffic.</li>
+            <li>Supported <b>Mitsubishi Connected Cars'</b> IoT telemetry pipeline (Go, Python).</li>
+            <li>Led the <b>Trakindo SAT Dashboard</b> and <b>Yakult YTopia</b> deliveries, plus performance work on Halo Suzuki App.</li>
+          </ul>
+        </div>
+
+        <div class="node">
+          <div class="node-head"><h3>Lead Back End Engineer</h3><span class="node-time mono">Jan 2023 — Nov 2023</span></div>
+          <div class="node-org">PT. Teduh Karya Asia <span>· Jakarta, Indonesia (remote)</span></div>
+          <ul>
+            <li>Led backend development and technical direction for a secure mental healthcare platform.</li>
+            <li>Designed database architecture supporting thousands of active users.</li>
+            <li>Built OpenAPI-based B2B integrations and a personality-assessment web platform.</li>
+            <li>Integrated Xendit for reliable payment processing.</li>
+            <li>Contributed to Teduh.io's recognition as a <b>Google Play Award 2023 Hidden Gem</b>.</li>
+          </ul>
+        </div>
+
+        <div class="node">
+          <div class="node-head"><h3>Back End Engineer</h3><span class="node-time mono">Oct 2022 — Jul 2023</span></div>
+          <div class="node-org">PT. PMA Kocopaper Indonesia <span>· Singapore (remote) · re-engaged Mar–Jul 2024</span></div>
+          <ul>
+            <li>Built a <b>Python Flask</b> microservice for quiz scoring, decoupled from the core NestJS backend.</li>
+            <li>Architected the backend for a gamified quiz platform unifying a React web app and a <b>Unity</b> game client.</li>
+            <li>Modeled <b>MongoDB</b> schemas for high-volume sessions, results, and progress tracking.</li>
+            <li>Owned API contracts between the frontend and Unity teams; drove OKR-based delivery cadence.</li>
+          </ul>
+        </div>
+
+        <div class="node">
+          <div class="node-head"><h3>Back End Engineer</h3><span class="node-time mono">Jan 2022 — Sep 2022</span></div>
+          <div class="node-org">PT. Sepadan Mitra Teknologi <span>· Jakarta, Indonesia</span></div>
+          <ul>
+            <li>Built backend services for an F&amp;B POS platform with e-wallet and e-banking integrations.</li>
+            <li>Migrated core data to <b>PostgreSQL</b>, improving query performance by ~40%.</li>
+            <li>Designed a sales analytics dashboard on <b>AWS S3</b>.</li>
+          </ul>
+        </div>
+
+        <div class="node">
+          <div class="node-head"><h3>Back End Engineer</h3><span class="node-time mono">Feb 2021 — Dec 2021</span></div>
+          <div class="node-org">PT. Nashta Global Utama <span>· Jakarta, Indonesia</span></div>
+          <ul>
+            <li>Maintained Indonesia's <b>National Single Window (INSW)</b> system — a national trade &amp; customs platform.</li>
+            <li>Implemented SOAP-based integrations with external government systems.</li>
+            <li>Developed and optimized RESTful APIs across the INSW ecosystem.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head"><span class="idx">02</span><h2>Featured projects</h2><span class="rule"></span></div>
+      <p class="section-note">A closer look at what I actually built at each stop — architecture decisions, integrations, and the scale they ran at.</p>
+
+      <div class="projects">
+
+        <div class="project">
+          <div class="p-meta">
+            <div class="p-shot"><img src="assets/myconnect.jpg" alt="MyConnect.ai dashboard showing goal tracking and Maia AI recommendations" loading="lazy"></div>
+            <h3>MyConnect.ai</h3>
+            <div class="p-role">Senior AI Fullstack Engineer</div>
+          </div>
+          <div class="p-body">
+            <p class="desc">A B2B employee engagement platform driving continuous upskilling and mentorship across organizations.</p>
+            <div class="p-contribs">
+              <div class="p-contrib"><b>AI Recommendation Engine (Maia)</b>Built the pipeline linking Quick Question, Point Reward, and Maia into personalized, engagement-driven recommendations.</div>
+              <div class="p-contrib"><b>Migration-driven architecture</b>Planned and executed the backend stack migration alongside the frontend lead.</div>
+              <div class="p-contrib"><b>Performance optimization</b>Improved API latency and database query efficiency to sustain 5,000 concurrent users.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="project">
+          <div class="p-meta">
+            <div class="p-shot"><img src="assets/teduh.jpg" alt="Teduh.io mobile counseling screen" loading="lazy"></div>
+            <h3>Teduh.io</h3>
+            <div class="p-role">Backend Lead</div>
+            <div class="p-badge">Google Play Award 2023</div>
+          </div>
+          <div class="p-body">
+            <p class="desc">A secure, scalable mental healthcare platform for therapy services and sensitive health data.</p>
+            <div class="p-contribs">
+              <div class="p-contrib"><b>Backend architecture</b>Designed and implemented the end-to-end system for a scalable mental-health platform.</div>
+              <div class="p-contrib"><b>Team leadership</b>Led development of core services with reliability and scalability as first principles.</div>
+              <div class="p-contrib"><b>Security &amp; compliance</b>Owned data protection and access control for sensitive health records.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="project">
+          <div class="p-meta">
+            <div class="p-shot"><img src="assets/koco.jpg" alt="Koco Engage gamified learning app screens" loading="lazy"></div>
+            <h3>Koco Engage</h3>
+            <div class="p-role">Backend Engineer</div>
+          </div>
+          <div class="p-body">
+            <p class="desc">A game-based learning platform integrated with Unity for real-time gameplay and progression.</p>
+            <div class="p-contribs">
+              <div class="p-contrib"><b>Backend architecture</b>Built scalable APIs enabling seamless comms between the core platform and the Unity engine.</div>
+              <div class="p-contrib"><b>Unity integration</b>Handled real-time data exchange, progression tracking, and session management.</div>
+              <div class="p-contrib"><b>Scalability</b>Kept services performant under concurrent users and live game interactions.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="project">
+          <div class="p-meta">
+            <div class="p-shot"><img src="assets/bonapp.jpg" alt="BonApp POS analytics dashboard" loading="lazy"></div>
+            <h3>BonApp.id</h3>
+            <div class="p-role">Backend Engineer</div>
+          </div>
+          <div class="p-body">
+            <p class="desc">A POS platform for F&amp;B merchants covering payments, delivery, and sales analytics.</p>
+            <div class="p-contribs">
+              <div class="p-contrib"><b>Delivery tracking</b>Built real-time order visibility from kitchen to doorstep.</div>
+              <div class="p-contrib"><b>E-wallet &amp; e-banking</b>Integrated digital payment APIs for merchants and customers.</div>
+              <div class="p-contrib"><b>Database performance</b>Migrated to PostgreSQL, lifting query performance by ~40%.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="project">
+          <div class="p-meta">
+            <div class="p-shot"><img src="assets/insw.jpg" alt="Indonesia National Single Window (insw.go.id) website" loading="lazy"></div>
+            <h3>Indonesia National Single Window</h3>
+            <div class="p-role">Backend Engineer</div>
+          </div>
+          <div class="p-body">
+            <p class="desc">A national platform integrating trade and customs data across Indonesian government agencies.</p>
+            <div class="p-contribs">
+              <div class="p-contrib"><b>System maintenance at national scale</b>Kept a critical multi-agency government platform running reliably.</div>
+              <div class="p-contrib"><b>SOAP integrations</b>Implemented secure, large-scale data exchange with external systems.</div>
+              <div class="p-contrib"><b>RESTful APIs</b>Built and optimized APIs for efficient communication across the INSW ecosystem.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head"><span class="idx">03</span><h2>Technical skills</h2><span class="rule"></span></div>
+      <div class="skill-grid">
+        <div class="skill-row">
+          <div class="k">programming</div>
+          <div class="chips"><span class="chip">Java</span><span class="chip">TypeScript</span><span class="chip">Node.js</span><span class="chip">PHP</span><span class="chip">Python</span><span class="chip">Go</span></div>
+        </div>
+        <div class="skill-row">
+          <div class="k">databases</div>
+          <div class="chips"><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">DynamoDB</span></div>
+        </div>
+        <div class="skill-row">
+          <div class="k">ai tools</div>
+          <div class="chips"><span class="chip">Anthropic</span><span class="chip">Gemini</span><span class="chip">Ollama</span><span class="chip">n8n</span></div>
+        </div>
+        <div class="skill-row">
+          <div class="k">backend frameworks</div>
+          <div class="chips"><span class="chip">NestJS</span><span class="chip">Laravel</span><span class="chip">Springboot</span><span class="chip">Flask</span><span class="chip">Gin</span><span class="chip">GraphQL</span></div>
+        </div>
+        <div class="skill-row">
+          <div class="k">cloud &amp; devops</div>
+          <div class="chips"><span class="chip">AWS (Amplify, S3, EC2, CloudWatch, Cognito, SNS, SQS)</span><span class="chip">Azure</span><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">NGINX</span><span class="chip">GitHub Actions</span></div>
+        </div>
+        <div class="skill-row">
+          <div class="k">frontend &amp; tools</div>
+          <div class="chips"><span class="chip">ReactJS</span><span class="chip">Flutter</span><span class="chip">Redis</span><span class="chip">Firebase</span><span class="chip">BullMQ</span><span class="chip">Kafka</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certs">
+    <div class="wrap">
+      <div class="section-head"><span class="idx">04</span><h2>Certifications &amp; education</h2><span class="rule"></span></div>
+
+      <div class="two-col">
+        <div>
+          <ul class="cert-list">
+            <li><span><b>Non Diploma AI Engineering</b> — Gramedia Academy</span><span class="yr">ongoing, est. Oct 2026</span></li>
+            <li><span><b>RAG and Agentic AI Professional Certificate</b> — IBM</span><span class="yr">2026</span></li>
+            <li><span><b>Best Hidden Gem App</b> — Google Play Award, Teduh.io</span><span class="yr">2023</span></li>
+            <li><span><b>AWS Cloud Operation</b> — Kominfo Scholarship</span><span class="yr">2022</span></li>
+            <li><span><b>Flutter Development</b> — Jabar Coding Camp</span><span class="yr">2022</span></li>
+            <li><span><b>AWS Academy Cloud Foundation</b></span><span class="yr">2021</span></li>
+            <li><span><b>Backend Developer Bootcamp</b> — Glints Academy Batch 8</span><span class="yr">2020</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="edu-card">
+            <h3>Universitas Indonesia</h3>
+            <div class="sub">B.Sc. Geophysics · 2015 – 2018</div>
+          </div>
+          <div class="edu-card">
+            <div class="lang-row"><span>English</span><b>Business level</b></div>
+            <div class="lang-row"><span>Bahasa Indonesia</span><b>Native</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="wrap">
+      <h2>Let's work together.</h2>
+      <p>Open to backend engineering, AI systems, and technical project management roles — remote or based in Jakarta / Depok.</p>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div class="k">email</div>
+          <a href="mailto:irwanardiansyah.bisnis@gmail.com">irwanardiansyah.bisnis@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <div class="k">whatsapp</div>
+          <a href="https://wa.me/6285158837855" target="_blank" rel="noopener">+62 851 5883 7855</a>
+        </div>
+        <div class="contact-item">
+          <div class="k">linkedin</div>
+          <a href="https://linkedin.com/in/irwanardiansyah" target="_blank" rel="noopener">/in/irwanardiansyah</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 Irwan Ardiansyah</span>
+        <span>Depok, West Java, Indonesia</span>
+      </div>
+    </div>
+  </footer>
+</main>
+
+</body>
+</html>
