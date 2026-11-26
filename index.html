@@ -511,6 +511,62 @@
       font-weight: 500;
     }
 
+    .flow {
+      display: flex;
+      align-items: stretch;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin: 0 0 18px;
+    }
+
+    .flow-step {
+      flex: 1 1 90px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-size: 11.5px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .flow-step b {
+      display: block;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      margin-bottom: 2px;
+    }
+
+    .p-tags {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .p-tags .chip {
+      font-size: 11.5px;
+      padding: 3px 8px;
+    }
+
+    .p-live {
+      margin-left: auto;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      padding: 5px 12px;
+      border-radius: 5px;
+      background: var(--accent);
+      color: #04120f;
+      font-weight: 600;
+    }
+
+    .p-live:hover {
+      opacity: .88;
+      text-decoration: none;
+    }
+
     @media(max-width:680px) {
       .project {
         grid-template-columns: 1fr;
@@ -934,6 +990,46 @@
           integrations, and the scale they ran at.</p>
 
         <div class="projects">
+
+          <div class="project" id="luang-ai">
+            <div class="p-meta">
+              <h3>Luang AI</h3>
+              <div class="p-role">Capstone · Multi-Agent AI Workflow</div>
+              <div class="p-badge">NDAI Final Project</div>
+            </div>
+            <div class="p-body">
+              <p class="desc">"Cari waktu terbaikmu." Luang helps Indonesian employees pick the best leave dates. Three
+                sequential AI agents compute leave windows, score road congestion, and find activities at the
+                destination — all in one response within seconds.</p>
+              <div class="flow">
+                <div class="flow-step"><b>1. Form</b>Leave, destination, purpose, transport</div>
+                <div class="flow-step"><b>2. n8n Webhook</b>Guest or registered user check</div>
+                <div class="flow-step"><b>3. Leave Analyst</b>RAG · Supabase pgvector</div>
+                <div class="flow-step"><b>4. Crowd Analyst</b>Road congestion level</div>
+                <div class="flow-step"><b>5. Trip Planner</b>Live web search</div>
+                <div class="flow-step"><b>6. Validator</b>Checks final dates vs Agent 1</div>
+              </div>
+              <div class="p-contribs">
+                <div class="p-contrib"><b>Multi-agent workflow</b>Three specialized Gemini agents orchestrated in n8n
+                  with structured JSON output between each step.</div>
+                <div class="p-contrib"><b>RAG on official data</b>Holiday and joint-leave rules from the official SKB 3
+                  Menteri are embedded in pgvector, so Agent 1 answers from source documents.</div>
+                <div class="p-contrib"><b>Anti-hallucination</b>A Code-node validator matches Agent 3's final dates to
+                  Agent 1's candidates. Live search handles changing data; RAG handles static data.</div>
+                <div class="p-contrib"><b>Problem &amp; roadmap</b>Eliminates wasted leave quota from extreme traffic
+                  and miscounted joint leave. Next: expand knowledge base, add more agents, and migrate to Supabase.</div>
+              </div>
+              <div class="p-tags">
+                <span class="chip">n8n</span>
+                <span class="chip">Google Gemini</span>
+                <span class="chip">Supabase pgvector</span>
+                <span class="chip">Next.js + TypeScript</span>
+                <span class="chip">Tailwind CSS</span>
+                <span class="chip">Vercel</span>
+                <a class="p-live" href="https://luang-ai.vercel.app" target="_blank" rel="noopener">Try it live ↗</a>
+              </div>
+            </div>
+          </div>
 
           <div class="project">
             <div class="p-meta">
