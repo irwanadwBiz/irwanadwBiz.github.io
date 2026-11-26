@@ -563,6 +563,36 @@
     }
 
     /* ===== CERTS / EDU ===== */
+    .cert-feature {
+      margin-bottom: 36px;
+    }
+
+    .cert-feature .p-shot {
+      aspect-ratio: 3/4;
+    }
+
+    .cert-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .cert-links a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      padding: 6px 12px;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      color: var(--text);
+    }
+
+    .cert-links a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      text-decoration: none;
+    }
+
     .two-col {
       display: grid;
       grid-template-columns: 1.3fr 1fr;
@@ -1146,11 +1176,40 @@
           <h2>Certifications &amp; education</h2><span class="rule"></span>
         </div>
 
+        <div class="projects cert-feature">
+          <div class="project">
+            <div class="p-meta">
+              <a class="p-shot" href="assets/ndai-certificate.jpg" target="_blank" rel="noopener">
+                <img src="assets/ndai-certificate.jpg"
+                  alt="Certificate of Completion — Non-Diploma in AI Engineering, Summa Cum Laude" loading="lazy">
+              </a>
+              <h3>Non-Diploma in AI Engineering</h3>
+              <div class="p-role">Certified AI Automation Engineer</div>
+              <div class="p-badge">Summa Cum Laude · GPA 4.00</div>
+            </div>
+            <div class="p-body">
+              <p class="desc">Completed the Non-Diploma in AI Engineering (NDAI) Batch 1 program conducted by
+                <b>Gramedia Academy</b> and <b>Makara UI Academy</b> (Jul – Nov 2026) — 3 months of academic learning
+                and 2 months of project assignment, graduating with <b>Summa Cum Laude</b> distinction (GPA 4.00,
+                Final Grade 88.08).</p>
+              <div class="p-contribs">
+                <div class="p-contrib"><b>Final Project Assessment — Luang AI</b>Built and presented <b>Luang AI</b> as
+                  the capstone project assessment, applying LLM, RAG, and agentic workflow engineering.</div>
+                <div class="p-contrib"><b>Core Curriculum</b>LLM &amp; Agentic AI, AnythingLLM, Knowledge Management
+                  &amp; RAG, Node.js APIs, n8n Workflow Automation, and Intelligent Personal AI Assistants.</div>
+              </div>
+              <div class="cert-links">
+                <a href="assets/ndai-certificate.jpg" target="_blank" rel="noopener">Certificate ↗</a>
+                <a href="assets/ndai-transcript.jpg" target="_blank" rel="noopener">Academic Transcript ↗</a>
+                <a href="assets/ndai-syllabus.jpg" target="_blank" rel="noopener">Course Syllabus ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="two-col">
           <div>
             <ul class="cert-list">
-              <li><span><b>Non Diploma AI Engineering</b> — Gramedia Academy</span><span class="yr">ongoing, est. Oct
-                  2026</span></li>
               <li><span><b>RAG and Agentic AI Professional Certificate</b> — IBM</span><span class="yr">2026</span></li>
               <li><span><b>Best Hidden Gem App</b> — Google Play Award, Teduh.io</span><span class="yr">2023</span></li>
               <li><span><b>AWS Cloud Operation</b> — Kominfo Scholarship</span><span class="yr">2022</span></li>
