@@ -863,7 +863,7 @@
           </div>
           <div class="status-cell">
             <div class="k">experience</div>
-            <div class="v">5+ years</div>
+            <div class="v" id="exp-years">5+ years</div>
           </div>
           <div class="status-cell">
             <div class="k">peak load handled</div>
@@ -1355,6 +1355,12 @@
       </div>
     </footer>
   </main>
+
+  <script>
+    const now = new Date();
+    const months = (now.getFullYear() - 2021) * 12 + (now.getMonth() - 1);
+    document.getElementById('exp-years').textContent = `${Math.floor(months / 12)}+ years`;
+  </script>
 
 </body>
 
